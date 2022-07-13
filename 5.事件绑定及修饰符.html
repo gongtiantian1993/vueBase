@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <div>
+            <h2>事件绑定: @click / v-on:click</h2>
+            <button @click="showInfo1">点我打印信息1</button>
+            <button @click="showInfo2(66,$event)">点我打印信息2</button>
+        </div>
+        <div>
+            <h2>键盘事件：@keyup/@keydown</h2>
+            <input type="text"  @keyup="keyupFn">
+            <h2>键盘事件修饰符:@keyup.修饰符=""(enter,delete,esc,space,tab,up,down,left,right)</h2>
+            <input type="text"  @keyup.enter="keyupFn" placeholder="输入回车">
+            <h2>事件连写 @keyup.ctrl.y</h2>
+            <input type="text"  @keyup.ctrl.y="keyupFn" placeholder="输入ctrl+y">
+            <p>PS：按下键盘事件测试</p>
+        </div>
+        <div>
+            <h2>事件修饰符 @click.修饰符名称 (prevent,stop,once,capture,self,passive)</h2>
+            <a href="https://www.baidu.com" @click.prevent="showInfo1">阻止a标签跳转</a>
+            <button @click.once="showInfo1">只执行一次</button>
+        </div>
+    </div>
+    <script>
+        const vm = new Vue({
+            el: "#root",
+            data() {
+                return {
+                    name: '尚硅谷',
+                }
+            },
+            methods: {
+                showInfo1(event) {
+                    console.log(this.name);
+                    console.log(event.target.innerText);
+                },
+                showInfo2(num, e) {
+                    console.log(this.name);
+                    console.log(num);
+                    console.log(e.target.innerText);
+                },
+                keyupFn(e){
+                    console.log('key up：');
+                    console.log(e.target.value);
+                    console.log(e.key);
+                    console.log(e.keyCode);
+                },
+            },
+        })
+    </script>
+</body>
+
+</html>

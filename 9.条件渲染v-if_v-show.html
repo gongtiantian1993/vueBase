@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <div>
+            <h2>条件渲染</h2>
+            <div v-show="displayMsg">v-show: display:none - {{ msg }}</div>
+            <div v-if="displayMsg">v-if：完全消失 - {{ msg }}</div>
+            <button @click="displayMsg=!displayMsg">切换</button>
+            <hr>
+            <div v-if="day===1">今天是星期一</div>
+            <div v-else-if="day===2">今天是星期2</div>
+            <div v-else-if="day===3">今天是星期3</div>
+            <div v-else-if="day===4">今天是星期4</div>
+            <div v-else-if="day===5">今天是星期5</div>
+            <div v-else>今天休息</div>
+            <button @click="day++">day++</button>
+        </div>
+    </div>
+    <script>
+        const vm = new Vue({
+            el: "#root",
+            data() {
+                return {
+                    displayMsg: true,
+                    msg: 'hello world',
+                    day: 1
+                }
+            },
+            methods: {
+            },
+        })
+    </script>
+</body>
+
+</html>

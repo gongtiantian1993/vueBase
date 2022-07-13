@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+    <script src="./js/dayjs.min.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <div>
+            <h2>过滤器-vue3废弃</h2>
+            <p>{{ time }}</p>
+            <!-- 计算属性  -->
+            <p>{{ fmtTime }}</p>
+            <!-- methods -->
+            <p>{{ getFmtTime() }}</p>
+            <!-- 过滤器 -->
+            <p>{{ time | timeFormatter }}</p>
+            <p>{{ time | timeFormatter('YYYY-MM-DD HH:mm:ss') }}</p>
+            <p>{{ time | timeFormatter('YYYY') }}</p>
+            <p>{{ time | timeFormatter('YYYY') | book}}</p>
+            <p>{{ time | timeFormatter('YYYY-MM-DD HH:mm:ss') | mySlice }}</p>
+        </div>
+    </div>
+    <script>
+        // 全局过滤器
+        Vue.filter('mySlice',(value)=>{
+            return value.slice(0,4);
+        });
+        const vm = new Vue({
+            el: "#root",
+            data() {
+                return {
+                    time:new Date()
+                }
+            },
+            methods: {
+                getFmtTime(){
+                    return dayjs(this.time).format('YYYY-MM-DD HH:mm:ss');
+                }
+            },
+            computed: {
+                fmtTime(){
+                    return dayjs(this.time).format('YYYY-MM-DD HH:mm:ss');
+                }
+            },
+            filters:{
+                timeFormatter(value,str='YYYY-MM-DD HH:mm:ss'){
+                    return dayjs(this.time).format(str);
+                },
+                book(value){
+                    return `《${value}》`
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

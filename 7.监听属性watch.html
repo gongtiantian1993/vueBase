@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <div>
+            <h2>监听属性 - watch</h2>
+            <!-- computed -->
+            <p>今天天气很{{ c_tianqiI }}</p>
+            <!-- watch -->
+            <p>今天天气很{{ tianqi }}</p>
+            <button @click="isHot=!isHot">切换天气</button>
+            <hr>
+            <h2>深度监听： deep:true, 立即执行：immediate:true</h2>
+            <p>{{ numbers.count }}</p>
+            <button @click="numbers.count++">count++</button>
+            <!-- 
+                计算属性和监听属性的区别：
+                1. computed能完成的，watch都能完成
+                2. computed不可以执行异步任务
+             -->
+        </div>
+    </div>
+    <script>
+        const vm = new Vue({
+            el: "#root",
+            data() {
+                return {
+                    isHot: true,
+                    tianqi: "",
+                    numbers: {
+                        a: 1,
+                        count: 0
+                    }
+                }
+            },
+            methods: {
+            },
+            computed: {
+                c_tianqiI() {
+                    return this.isHot ? '炎热' : '凉爽'
+                }
+            },
+            watch: {
+                // 完整写法
+                isHot: {
+                    immediate: true, // 初始化就调用一次
+                    handler(newValue, oldValue) {
+                        console.log('is hot change...');
+                        console.log(newValue);
+                        console.log(oldValue);
+                        this.tianqi = newValue ? '炎热' : '凉爽'
+                    }
+                },
+                // 简写形式 - 配置项只有handler时
+                // isHot(newValue, oldValue){
+                //     console.log('is hot change...');
+                //     console.log(newValue);
+                //     console.log(oldValue);
+                //     this.tianqi = newValue ? '炎热' : '凉爽'
+                // },
+
+                // 监听对象中某一属性变化
+                "numbers.count": {
+                    immediate: true,
+                    handler(newValue, oldValue) {
+                        console.log('count change...');
+                        console.log(newValue);
+                        console.log(oldValue);
+                    }
+                },
+                // 监听对象结构中所有属性的变化
+                numbers: {
+                    immediate: true,
+                    deep: true,
+                    handler(newValue, oldValue) {
+                        console.log('numbers change...');
+                        console.log(newValue);
+                        console.log(oldValue);
+                    }
+                },
+            }
+        })
+    </script>
+</body>
+
+</html>

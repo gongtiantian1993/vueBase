@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <div>
+            <h2>计算属性 - computed</h2>
+            <p>姓：<input type="text" v-model:value="firstName"></p>
+            <p>名：<input type="text" v-model:value="lastName"></p>
+            <!-- 差值语法实现 -->
+            <p>全名：{{ firstName.slice(0,1) }}-{{lastName}}</p> 
+            <!-- methods方法实现（多次调用，就执行多次，性能不好） -->
+            <p>全名：{{ fullName() }}</p>
+            <!-- 计算属性 computed -->
+            <p>全名：{{ cfullName }}</p>
+        </div>
+    </div>
+    <script>
+        const vm = new Vue({
+            el: "#root",
+            data() {
+                return {
+                    firstName: '宫',
+                    lastName: '甜甜',
+                }
+            },
+            methods: {
+                fullName() {
+                    console.log('full name fn...');
+                    return this.firstName.slice(0, 1) + '-' + this.lastName
+                },
+            },
+            computed:{
+                cfullName(){
+                    console.log('计算属性...');
+                    return this.firstName.slice(0, 1) + '-' + this.lastName
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+</head>
+
+<body>
+    <!-- <div id="root"></div> -->
+    <script>
+        let number = 18;
+        let person = {
+            name: '张三',
+            sex:'男'
+        }
+        // 增加age属性
+        Object.defineProperty(person,'age',{
+            // value:18,
+            // enumerable:true, // 控制属性是否可枚举，默认值是false
+            // writable:true, // 控制属性是否可以被修改，默认值是false
+            // configurable:true //控制属性是否可以被删除，默认值是false
+            get(){
+                console.log('有人读取age属性了');
+                return number;
+            },
+            set(value){
+                console.log('有人修改age属性了，且值为：',value);
+                number = value;
+                // document.getElementById("root").innerHTML = number;
+            }
+        });
+    </script>
+</body>
+
+</html>

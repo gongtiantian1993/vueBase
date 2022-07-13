@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <div>
+            <h2>收集表单数据 (v-model修饰符,lazy:失去焦点再手机，trim,number)</h2>
+            <div>
+                账号：<input type="text" v-model="formData.account">
+                <br>
+                密码：<input type="text" v-model="formData.password">
+                <br>
+                年龄：<input type="number" v-model.number="formData.age">
+            </div>
+            <div>
+                性别：
+                男 <input type="radio" name="sex" v-model="formData.sex" value="male">
+                女 <input type="radio" name="sex" v-model="formData.sex" value="female">
+            </div>
+            <div>
+                爱好：
+                学习<input type="checkbox" name="hobby" v-model="formData.hobby" value="学习">
+                打游戏<input type="checkbox" name="hobby" v-model="formData.hobby" value="打游戏">
+                吃饭<input type="checkbox" name="hobby" v-model="formData.hobby" value="吃饭">
+            </div>
+            <div>
+                所属校区：
+                <select name="" id="" v-model="formData.city">
+                    <option value="">请选择校区</option>
+                    <option value="beijing">北京</option>
+                    <option value="shanghai">上海</option>
+                </select>
+            </div>
+            <div>
+                其他信息：
+                <textarea v-model="formData.other" name="" id="" cols="30" rows="10"></textarea>
+            </div>
+            <div>
+                <input v-model="formData.agree" type="checkbox"> 阅读并接受<a href="">《用户协议》</a>
+            </div>
+            <div> <button @click="demo">提交</button></div>
+        </div>
+    </div>
+    <script>
+        const vm = new Vue({
+            el: "#root",
+            data() {
+                return {
+                    formData: {
+                        account: '',
+                        password: '',
+                        age: null,
+                        sex: 'male',
+                        hobby: [],
+                        city: 'shanghai',
+                        other: '',
+                        agree: false
+                    }
+                }
+            },
+            methods: {
+                demo() {
+                    console.log(JSON.stringify(this.formData));
+                }
+            },
+            computed: {
+            }
+        })
+    </script>
+</body>
+
+</html>

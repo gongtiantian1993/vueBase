@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <div>
+            <h2>差值表达式 </h2>
+            <p>hello,{{ msg }}</p>
+        </div>
+        <div>
+            <h2>指令：:属性/v-bind:属性</h2>
+            <a :href="linkTo"> 跳转到百度</a>
+            <a v-bind:href="linkTo">指令： 跳转到百度</a>
+        </div>
+        <div>
+            <h2>双向绑定：v-model:value/v-model</h2>
+            <input type="text" v-model:value="count">
+            <p>{{ count }}</p>
+        </div>
+        
+    </div>
+    <script>
+        Vue.config.productionTip = false;
+        // 创建vue实例
+        new Vue({
+            el: "#root",
+            data() {
+                return {
+                    msg:'tian tian gong',
+                    linkTo:'https://www.baidu.com',
+                    count:0
+                }
+            },
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root">
+        <h2>常用内置指令(v-on,v-bind,v-model,v-for,v-if,v-else,v-show...)</h2>
+        <div>
+            <h2>v-text指令：不支持结构解析</h2>
+            <p>{{ msg }}</p>
+            <p v-text="msg"></p>
+        </div>
+        <div>
+            <h2>v-html指令：支持结构解析</h2>
+            <p v-html="msg"></p>
+        </div>
+        <div>
+            <h2>v-cloak指令：网络延迟时，未经解析的模板</h2>
+            <p v-cloak>网络延迟时，未经解析的模板></p>
+        </div>
+        <div>
+            <h2>v-once指令：初次动态渲染之后就静态渲染（渲染一次）</h2>
+            <p v-once>{{ count }}</p>
+            <p>{{ count }}</p>
+            <button @click="count++">count++</button>
+        </div>
+        <div>
+            <h2>v-pre指令：不解析</h2>
+            <p v-pre>{{ count }}</p>
+        </div>
+        ...
+    </div>
+    <script>
+        const vm = new Vue({
+            el: "#root",
+            data() {
+                return {
+                    msg:'<span style="color:red">hello world</span>',
+                    count:1
+                }
+            },
+            methods: {
+            },
+            computed: {
+            },
+        })
+    </script>
+</body>
+
+</html>
